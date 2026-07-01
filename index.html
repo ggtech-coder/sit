@@ -3,25 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GG Tech - Smart Solution | Tecnologia de Elite</title>
+<title>GG Tech | Tecnologia que gera resultados</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cyan: #00E5FF;
-    --cyan2: #00B4D8;
-    --cyan-dark: #0077A8;
-    --red: #FF1744;
-    --bg: #040C14;
-    --bg2: #071520;
-    --bg3: #0A1E2F;
-    --card: #071825;
-    --card2: #0C2133;
-    --white: #E8F4FF;
-    --gray: #7A9BB5;
-    --border: rgba(0,229,255,0.15);
-    --glow: 0 0 20px rgba(0,229,255,0.4), 0 0 60px rgba(0,229,255,0.15);
-    --glow-sm: 0 0 10px rgba(0,229,255,0.5);
+    --cyan: #3B82F6;
+    --cyan2: #2563EB;
+    --cyan-dark: #1E3A8A;
+    --purple: #A855F7;
+    --purple2: #7C3AED;
+    --red: #A855F7;
+    --bg: #060714;
+    --bg2: #0A0B1E;
+    --bg3: #10122A;
+    --card: #0B0D22;
+    --card2: #12142E;
+    --white: #ECEEFF;
+    --gray: #8A8FBF;
+    --border: rgba(90,110,255,0.18);
+    --glow: 0 0 20px rgba(59,130,246,0.4), 0 0 60px rgba(168,85,247,0.2);
+    --glow-sm: 0 0 10px rgba(59,130,246,0.5);
+    --gradient-bp: linear-gradient(90deg, var(--cyan), var(--purple));
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -89,7 +92,7 @@
   }
   nav.scrolled {
     background: rgba(4,12,20,0.98);
-    box-shadow: 0 4px 30px rgba(0,229,255,0.08);
+    box-shadow: 0 4px 30px rgba(59,130,246,0.08);
   }
   .nav-logo {
     display: flex;
@@ -101,7 +104,7 @@
     width: 42px; height: 42px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 0 15px rgba(0,229,255,0.5);
+    box-shadow: 0 0 15px rgba(59,130,246,0.5);
   }
   .nav-brand {
     font-family: 'Space Grotesk', sans-serif;
@@ -110,15 +113,16 @@
     color: var(--cyan);
     letter-spacing: -0.5px;
     letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(0,229,255,0.6);
+    text-shadow: 0 0 15px rgba(59,130,246,0.6);
     line-height: 1.2;
   }
   .nav-brand span {
     display: block;
     font-size: 0.55rem;
     color: var(--gray);
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     font-weight: 400;
+    white-space: nowrap;
   }
   .nav-links {
     display: flex;
@@ -198,8 +202,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
   }
@@ -208,7 +212,7 @@
     position: absolute;
     width: 600px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     animation: pulse-orb 4s ease-in-out infinite;
@@ -263,8 +267,26 @@
   }
   .hero-title .line1 { color: var(--white); }
   .hero-title .line2 {
-    color: var(--cyan);
-    text-shadow: 0 0 30px rgba(0,229,255,0.6), 0 0 60px rgba(0,229,255,0.3);
+    background: var(--gradient-bp);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(59,130,246,0.5)) drop-shadow(0 0 30px rgba(168,85,247,0.3));
+  }
+
+  .hero-slogan {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    font-weight: 600;
+    background: var(--gradient-bp);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fade-up 0.8s ease 0.55s forwards;
   }
 
   .hero-subtitle {
@@ -308,7 +330,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: var(--cyan);
+    background: var(--gradient-bp);
     color: var(--bg);
     padding: 14px 32px;
     font-family: 'Space Grotesk', sans-serif;
@@ -380,12 +402,13 @@
   .logo-ring {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(0,229,255,0.2);
+    border: 1px solid rgba(59,130,246,0.2);
     animation: spin-ring 20s linear infinite;
   }
   .logo-ring:nth-child(1) { width: 320px; height: 320px; animation-duration: 25s; }
-  .logo-ring:nth-child(2) { width: 360px; height: 360px; animation-direction: reverse; animation-duration: 18s; border-style: dashed; }
-  .logo-ring:nth-child(3) { width: 400px; height: 400px; animation-duration: 35s; border-color: rgba(0,229,255,0.1); }
+  .logo-ring:nth-child(2) { width: 360px; height: 360px; animation-direction: reverse; animation-duration: 18s; border-style: dashed; border-color: rgba(168,85,247,0.25); }
+  .logo-ring:nth-child(3) { width: 400px; height: 400px; animation-duration: 35s; border-color: rgba(59,130,246,0.1); }
+  .logo-ring:nth-child(2)::before { background: var(--purple); box-shadow: 0 0 10px rgba(168,85,247,0.6); }
 
   .logo-ring::before {
     content: '';
@@ -409,7 +432,7 @@
     object-fit: cover;
     position: relative;
     z-index: 2;
-    box-shadow: 0 0 40px rgba(0,229,255,0.4), 0 0 80px rgba(0,229,255,0.2), 0 0 120px rgba(0,229,255,0.1);
+    box-shadow: 0 0 40px rgba(59,130,246,0.4), 0 0 80px rgba(59,130,246,0.2), 0 0 120px rgba(59,130,246,0.1);
     animation: logo-float 6s ease-in-out infinite;
   }
 
@@ -494,7 +517,7 @@
     z-index: 2;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    background: rgba(0,229,255,0.03);
+    background: rgba(59,130,246,0.03);
     padding: 14px 0;
     overflow: hidden;
   }
@@ -561,7 +584,12 @@
     line-height: 1.1;
     margin-bottom: 20px;
   }
-  .section-title span { color: var(--cyan); }
+  .section-title span {
+    background: var(--gradient-bp);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
   .section-desc {
     font-size: 1rem;
@@ -598,7 +626,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    background: var(--gradient-bp);
     transform: scaleX(0);
     transition: transform 0.4s;
   }
@@ -607,15 +635,15 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top left, rgba(0,229,255,0.05) 0%, transparent 60%);
+    background: radial-gradient(circle at top left, rgba(59,130,246,0.05) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.4s;
   }
 
   .service-card:hover {
-    border-color: rgba(0,229,255,0.5);
+    border-color: rgba(59,130,246,0.5);
     transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,229,255,0.1), 0 0 0 1px rgba(0,229,255,0.1);
+    box-shadow: 0 20px 60px rgba(59,130,246,0.1), 0 0 0 1px rgba(59,130,246,0.1);
   }
   .service-card:hover::before { transform: scaleX(1); }
   .service-card:hover::after { opacity: 1; }
@@ -626,7 +654,7 @@
     display: block;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 0 8px rgba(0,229,255,0.4));
+    filter: drop-shadow(0 0 8px rgba(59,130,246,0.4));
   }
 
   .service-name {
@@ -655,10 +683,186 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem;
     color: var(--cyan);
-    border: 1px solid rgba(0,229,255,0.3);
+    border: 1px solid rgba(59,130,246,0.3);
     letter-spacing: 2px;
     position: relative;
     z-index: 1;
+  }
+
+  /* PRICING */
+  #pricing {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .pricing-card {
+    background: linear-gradient(145deg, var(--card) 0%, #08091a 100%);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+
+  .pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gradient-bp);
+    opacity: 0.4;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(59,130,246,0.5);
+    box-shadow: 0 20px 60px rgba(59,130,246,0.1);
+  }
+
+  .pricing-card.featured {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 1px rgba(168,85,247,0.4), 0 20px 60px rgba(168,85,247,0.15);
+    transform: scale(1.03);
+  }
+  .pricing-card.featured::before { opacity: 1; height: 3px; }
+  .pricing-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+
+  .pricing-badge {
+    position: absolute;
+    top: 20px; right: -34px;
+    background: var(--gradient-bp);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 40px;
+    transform: rotate(40deg);
+    text-transform: uppercase;
+    box-shadow: 0 4px 14px rgba(168,85,247,0.4);
+  }
+
+  .plan-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .plan-setup {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+  .plan-setup strong { color: var(--cyan); font-size: 0.95rem; }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .plan-price-currency {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    color: var(--gray);
+  }
+  .plan-price-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    background: var(--gradient-bp);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .plan-price-period {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+
+  .plan-features {
+    list-style: none;
+    margin-bottom: 32px;
+    flex-grow: 1;
+  }
+  .plan-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--gray);
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(59,130,246,0.06);
+    line-height: 1.4;
+  }
+  .plan-features li:last-child { border-bottom: none; }
+  .plan-features li strong { color: var(--white); font-weight: 500; }
+  .plan-features li.included::before {
+    content: '✓';
+    color: var(--cyan);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .pricing-card.featured .plan-features li.included::before { color: var(--purple); }
+
+  .plan-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid rgba(59,130,246,0.4);
+    color: var(--white);
+    padding: 14px 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+  .plan-cta:hover {
+    background: var(--gradient-bp);
+    color: var(--bg);
+    box-shadow: var(--glow);
+    border-color: transparent;
+  }
+  .pricing-card.featured .plan-cta {
+    background: var(--gradient-bp);
+    color: var(--bg);
+    border-color: transparent;
+  }
+  .pricing-card.featured .plan-cta:hover { box-shadow: var(--glow); transform: translateY(-2px); }
+
+  .pricing-note {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin-top: 40px;
   }
 
   /* ABOUT */
@@ -731,13 +935,13 @@
   .about-list-icon {
     width: 40px; height: 40px;
     flex-shrink: 0;
-    border: 1px solid rgba(0,229,255,0.3);
+    border: 1px solid rgba(59,130,246,0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
     color: var(--cyan);
-    background: rgba(0,229,255,0.05);
+    background: rgba(59,130,246,0.05);
   }
 
   .about-list-text h4 {
@@ -794,7 +998,7 @@
     font-weight: 700;
     letter-spacing: -2px;
     color: var(--cyan);
-    text-shadow: 0 0 20px rgba(0,229,255,0.5);
+    text-shadow: 0 0 20px rgba(59,130,246,0.5);
     line-height: 1;
     margin-bottom: 8px;
   }
@@ -820,7 +1024,7 @@
     position: absolute;
     top: 30px; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,229,255,0.3) 20%, rgba(0,229,255,0.3) 80%, transparent);
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3) 20%, rgba(59,130,246,0.3) 80%, transparent);
   }
 
   .process-step {
@@ -879,7 +1083,7 @@
     position: absolute;
     width: 800px; height: 800px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,229,255,0.05) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 60%);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
   }
@@ -971,14 +1175,14 @@
   .footer-brand-logo img {
     width: 48px; height: 48px;
     border-radius: 50%;
-    box-shadow: 0 0 15px rgba(0,229,255,0.4);
+    box-shadow: 0 0 15px rgba(59,130,246,0.4);
   }
   .footer-brand-name {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.1rem;
     font-weight: 900;
     color: var(--cyan);
-    text-shadow: 0 0 15px rgba(0,229,255,0.5);
+    text-shadow: 0 0 15px rgba(59,130,246,0.5);
   }
   .footer-brand-sub {
     font-size: 0.7rem;
@@ -1133,6 +1337,10 @@
     .metrics-grid { grid-template-columns: 1fr 1fr; }
     .footer-top { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card.featured { transform: none; }
+    .pricing-card.featured:hover { transform: translateY(-6px); }
+    .pricing-badge { right: -30px; }
   }
 
   /* SCANLINE effect */
@@ -1143,8 +1351,8 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(0,229,255,0.015) 2px,
-      rgba(0,229,255,0.015) 4px
+      rgba(59,130,246,0.015) 2px,
+      rgba(59,130,246,0.015) 4px
     );
     pointer-events: none;
     z-index: 999;
@@ -1225,9 +1433,44 @@
   }
   .trust-item-icon {
     font-size: 1.1rem;
-    filter: drop-shadow(0 0 6px rgba(0,229,255,0.5));
+    filter: drop-shadow(0 0 6px rgba(59,130,246,0.5));
   }
   .trust-item strong { color: var(--white); }
+
+  /* PROMISE */
+  .promise-section {
+    position: relative;
+    z-index: 1;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 70px 5%;
+    text-align: center;
+  }
+  .promise-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .promise-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--purple);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .promise-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--white);
+  }
+  .promise-text span {
+    background: var(--gradient-bp);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
   /* TESTIMONIALS */
   #testimonials { background: var(--bg2); }
@@ -1245,9 +1488,9 @@
     transition: all 0.3s;
   }
   .testi-card:hover {
-    border-color: rgba(0,229,255,0.4);
+    border-color: rgba(59,130,246,0.4);
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,229,255,0.08);
+    box-shadow: 0 16px 48px rgba(59,130,246,0.08);
   }
   .testi-quote {
     font-size: 2.5rem;
@@ -1321,7 +1564,7 @@
     overflow: hidden;
     transition: border-color 0.3s;
   }
-  .faq-item.open { border-color: rgba(0,229,255,0.4); }
+  .faq-item.open { border-color: rgba(59,130,246,0.4); }
   .faq-q {
     display: flex;
     justify-content: space-between;
@@ -1340,14 +1583,14 @@
   .faq-chevron {
     flex-shrink: 0;
     width: 24px; height: 24px;
-    border: 1px solid rgba(0,229,255,0.3);
+    border: 1px solid rgba(59,130,246,0.3);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-size: 0.75rem;
     color: var(--cyan);
     transition: transform 0.3s;
   }
-  .faq-item.open .faq-chevron { transform: rotate(180deg); background: rgba(0,229,255,0.1); }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); background: rgba(59,130,246,0.1); }
   .faq-a {
     max-height: 0;
     overflow: hidden;
@@ -1385,7 +1628,7 @@
     font-family: 'Space Grotesk', sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
-    color: rgba(0,229,255,0.15);
+    color: rgba(59,130,246,0.15);
     line-height: 1;
     flex-shrink: 0;
     letter-spacing: -2px;
@@ -1425,11 +1668,12 @@
   <a href="#hero" class="nav-logo">
     <img src="LOGO_PLACEHOLDER" alt="GG Tech Logo" id="nav-logo-img">
     <div>
-      <div class="nav-brand">GG TECH<span>Smart Solution</span></div>
+      <div class="nav-brand">GG TECH<span>Tecnologia que gera resultados</span></div>
     </div>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Serviços</a></li>
+    <li><a href="#pricing">Preços</a></li>
     <li><a href="#about">Sobre</a></li>
     <li><a href="#metrics">Resultados</a></li>
     <li><a href="#process">Processo</a></li>
@@ -1452,9 +1696,10 @@
         <div class="line1">TECNOLOGIA</div>
         <div class="line2">DE ELITE</div>
       </h1>
+      <p class="hero-slogan">Tecnologia que gera resultados.</p>
       <p class="hero-subtitle">Smart Solution · Est. 2024</p>
       <p class="hero-desc">
-        Transformamos desafios tecnológicos em soluções precisas.<br>
+        Nós desenvolvemos soluções sob medida para o seu negócio.<br>
         De <span class="hero-typed" id="typed-text"></span>
       </p>
       <div class="hero-actions">
@@ -1488,12 +1733,12 @@
         <div class="logo-ring"></div>
         <img src="LOGO_PLACEHOLDER" alt="GG Tech" class="logo-img" id="hero-logo-img">
         <svg class="reticle" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="130" cy="130" r="125" stroke="#00E5FF" stroke-width="1" stroke-dasharray="4 8"/>
-          <line x1="130" y1="0" x2="130" y2="40" stroke="#00E5FF" stroke-width="1.5"/>
-          <line x1="130" y1="220" x2="130" y2="260" stroke="#00E5FF" stroke-width="1.5"/>
-          <line x1="0" y1="130" x2="40" y2="130" stroke="#00E5FF" stroke-width="1.5"/>
-          <line x1="220" y1="130" x2="260" y2="130" stroke="#00E5FF" stroke-width="1.5"/>
-          <circle cx="130" cy="130" r="4" fill="#00E5FF" opacity="0.6"/>
+          <circle cx="130" cy="130" r="125" stroke="#3B82F6" stroke-width="1" stroke-dasharray="4 8"/>
+          <line x1="130" y1="0" x2="130" y2="40" stroke="#3B82F6" stroke-width="1.5"/>
+          <line x1="130" y1="220" x2="130" y2="260" stroke="#3B82F6" stroke-width="1.5"/>
+          <line x1="0" y1="130" x2="40" y2="130" stroke="#3B82F6" stroke-width="1.5"/>
+          <line x1="220" y1="130" x2="260" y2="130" stroke="#3B82F6" stroke-width="1.5"/>
+          <circle cx="130" cy="130" r="4" fill="#3B82F6" opacity="0.6"/>
         </svg>
       </div>
     </div>
@@ -1541,6 +1786,13 @@
   </div>
 </div>
 
+<!-- PROMISE -->
+<div class="promise-section">
+  <div class="promise-inner">
+    <div class="promise-tag">A PROMESSA</div>
+    <p class="promise-text">Colocamos sua empresa <span>na internet de forma profissional, rápida e sem dor de cabeça.</span></p>
+  </div>
+</div>
 
 <!-- WHY US -->
 <section id="why">
@@ -1647,6 +1899,74 @@
   </div>
 </section>
 
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-tag reveal">INVESTIMENTO</div>
+    <h2 class="section-title reveal">PLANOS PARA <span>COLOCAR SEU NEGÓCIO ONLINE</span></h2>
+    <p class="section-desc reveal">Sites profissionais com preço claro, sem surpresa. Escolha o plano ideal e comece a gerar resultados.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="plan-name">Bronze</div>
+        <div class="plan-setup">Desenvolvimento e implantação: <strong>R$ 997</strong></div>
+        <div class="plan-price">
+          <span class="plan-price-currency">R$</span>
+          <span class="plan-price-value">99</span>
+          <span class="plan-price-period">/mês</span>
+        </div>
+        <ul class="plan-features">
+          <li class="included">Hospedagem inclusa</li>
+          <li class="included">Domínio incluso</li>
+          <li class="included">Certificado SSL</li>
+          <li class="included">Alterações simples</li>
+        </ul>
+        <a href="https://wa.me/5511999070361?text=Olá!%20Tenho%20interesse%20no%20plano%20Bronze." target="_blank" class="plan-cta">Quero o Bronze</a>
+      </div>
+
+      <div class="pricing-card featured reveal">
+        <div class="pricing-badge">Mais popular</div>
+        <div class="plan-name">Prata</div>
+        <div class="plan-setup">Desenvolvimento e implantação: <strong>R$ 1.497</strong></div>
+        <div class="plan-price">
+          <span class="plan-price-currency">R$</span>
+          <span class="plan-price-value">149</span>
+          <span class="plan-price-period">/mês</span>
+        </div>
+        <ul class="plan-features">
+          <li class="included"><strong>Tudo do Bronze</strong></li>
+          <li class="included">Integração com Google Maps</li>
+          <li class="included">Botão de WhatsApp</li>
+          <li class="included">Google Analytics</li>
+          <li class="included">Formulários de contato</li>
+        </ul>
+        <a href="https://wa.me/5511999070361?text=Olá!%20Tenho%20interesse%20no%20plano%20Prata." target="_blank" class="plan-cta">Quero o Prata</a>
+      </div>
+
+      <div class="pricing-card reveal">
+        <div class="plan-name">Ouro</div>
+        <div class="plan-setup">Desenvolvimento e implantação: <strong>R$ 2.497</strong></div>
+        <div class="plan-price">
+          <span class="plan-price-currency">R$</span>
+          <span class="plan-price-value">199</span>
+          <span class="plan-price-period">/mês</span>
+        </div>
+        <ul class="plan-features">
+          <li class="included"><strong>Tudo do Prata</strong></li>
+          <li class="included">Sistema sob medida</li>
+          <li class="included">Agendamento online</li>
+          <li class="included">Catálogo de produtos/serviços</li>
+          <li class="included">Área administrativa</li>
+          <li class="included">Integrações personalizadas</li>
+        </ul>
+        <a href="https://wa.me/5511999070361?text=Olá!%20Tenho%20interesse%20no%20plano%20Ouro." target="_blank" class="plan-cta">Quero o Ouro</a>
+      </div>
+    </div>
+
+    <p class="pricing-note reveal">Valores de implantação pagos uma única vez. Mensalidade cobre hospedagem, domínio, SSL e manutenção contínua. Precisa de algo diferente? Fale com a gente e montamos um plano sob medida.</p>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
@@ -1712,7 +2032,7 @@
             &nbsp;&nbsp;<span class="code-key">status</span>: <span class="code-string">"ONLINE ✓"</span><br>
             };<br><br>
             <span class="code-comment">// Execute o próximo nível</span><br>
-            <span class="code-key">await</span> <span style="color:#a8c4e0">ggtech</span>.<span style="color:#00E5FF">transformar</span>(<br>
+            <span class="code-key">await</span> <span style="color:#a8c4e0">ggtech</span>.<span style="color:#3B82F6">transformar</span>(<br>
             &nbsp;&nbsp;<span class="code-string">seuNegocio</span><br>
             );
           </div>
@@ -1791,7 +2111,7 @@
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">Meu computador virou sucata e em menos de 2 dias a GG Tech devolveu funcionando melhor do que antes. Atendimento rápido, preço justo e sem enrolação.</p>
         <div class="testi-author">
-          <div class="testi-avatar" style="background: rgba(0,229,255,0.15); color: var(--cyan);">RM</div>
+          <div class="testi-avatar" style="background: rgba(59,130,246,0.15); color: var(--cyan);">RM</div>
           <div>
             <div class="testi-name">Ricardo Mendes</div>
             <div class="testi-role">Empresário · São Paulo</div>
@@ -1893,11 +2213,11 @@
           <img src="LOGO_PLACEHOLDER" alt="GG Tech" id="footer-logo-img">
           <div>
             <div class="footer-brand-name">GG TECH</div>
-            <div class="footer-brand-sub">Smart Solution</div>
+            <div class="footer-brand-sub">Tecnologia que gera resultados</div>
           </div>
         </div>
         <p class="footer-desc">
-          Tecnologia séria para negócios sérios. Transformamos problemas em soluções e entregas em referências.
+          Nós desenvolvemos soluções sob medida. Colocamos sua empresa na internet de forma profissional, rápida e sem dor de cabeça.
         </p>
         <a href="tel:+5511999070361" class="footer-phone">
           📞 (11) 99907-0361
@@ -1909,6 +2229,7 @@
         <ul class="footer-links">
           <li><a href="#services">Sistemas SaaS</a></li>
           <li><a href="#services">Sites & Apps</a></li>
+          <li><a href="#pricing">Planos e Preços</a></li>
           <li><a href="#services">Cibersegurança</a></li>
           <li><a href="#services">Automação</a></li>
         </ul>
@@ -1967,7 +2288,7 @@ function initMatrix() {
 function drawMatrix() {
   ctx.fillStyle = 'rgba(4,12,20,0.05)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#00E5FF';
+  ctx.fillStyle = '#3B82F6';
   ctx.font = '13px Share Tech Mono, monospace';
   drops.forEach((y, i) => {
     const char = String.fromCharCode(0x30A0 + Math.random() * 96);
