@@ -158,6 +158,162 @@
     if (el) el.textContent = new Date().getFullYear();
   }
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+  // ---------- Scroll progress ruler ----------
+  function setupScrollRuler() {
+    const ruler = document.getElementById("scrollRuler");
+    const fill = document.getElementById("scrollRulerFill");
+    if (!ruler || !fill) return;
+    let ticking = false;
+
+    function update() {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      fill.style.width = pct + "%";
+      fill.setAttribute("data-pct", Math.round(pct) + "%");
+      ruler.classList.toggle("active", window.scrollY > 40);
+      ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    });
+    update();
+  }
+
+  // ---------- Drafting cursor readout (hero only) ----------
+  function setupCursorTag() {
+    const hero = document.getElementById("heroInteractive");
+    const tag = document.getElementById("cursorTag");
+    const label = document.getElementById("cursorTagLabel");
+    const gridBg = hero ? hero.querySelector(".hero-grid-bg") : null;
+    if (!hero || !tag || !label || !finePointer || reduceMotion) return;
+
+    hero.addEventListener("mouseenter", () => tag.classList.add("visible"));
+    hero.addEventListener("mouseleave", () => {
+      tag.classList.remove("visible");
+      if (gridBg) gridBg.style.transform = "";
+    });
+
+    hero.addEventListener("mousemove", (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = Math.round(e.clientX - rect.left);
+      const y = Math.round(e.clientY - rect.top);
+      tag.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      label.textContent = `X ${x} · Y ${y}`;
+
+      if (gridBg) {
+        const dx = (e.clientX - rect.left - rect.width / 2) / rect.width;
+        const dy = (e.clientY - rect.top - rect.height / 2) / rect.height;
+        gridBg.style.transform = `translate(${dx * -14}px, ${dy * -14}px)`;
+      }
+    });
+  }
+
+  // ---------- Count-up numbers ----------
+  function setupCountUp() {
+    const nums = document.querySelectorAll(".proof-num[data-count]");
+    if (!nums.length) return;
+
+    function animate(el) {
+      const target = parseInt(el.getAttribute("data-count"), 10) || 0;
+      const suffix = el.getAttribute("data-suffix") || "";
+      if (reduceMotion || target === 0) {
+        el.textContent = target + suffix;
+        return;
+      }
+      const duration = 1100;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      nums.forEach(animate);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+    nums.forEach((el) => io.observe(el));
+  }
+
+  // ---------- Magnetic buttons ----------
+  function setupMagnetic() {
+    if (!finePointer || reduceMotion) return;
+    document.querySelectorAll(".magnetic").forEach((btn) => {
+      btn.addEventListener("mousemove", (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.18}px, ${y * 0.35}px)`;
+      });
+      btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "";
+      });
+    });
+  }
+
+  // ---------- Tilt cards ----------
+  function setupTilt() {
+    if (!finePointer || reduceMotion) return;
+    document.querySelectorAll(".tilt").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg) translateY(-6px)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  // ---------- Active nav link on scroll ----------
+  function setupActiveNav() {
+    const links = document.querySelectorAll('#navLinks a[href^="#"]');
+    const sections = Array.from(links)
+      .map((a) => document.querySelector(a.getAttribute("href")))
+      .filter(Boolean);
+    if (!sections.length || !("IntersectionObserver" in window)) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = "#" + entry.target.id;
+          const link = document.querySelector(`#navLinks a[href="${id}"]`);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach((a) => a.classList.remove("active"));
+            link.classList.add("active");
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    sections.forEach((s) => io.observe(s));
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     applyConfig();
     setupNav();
@@ -165,5 +321,11 @@
     setupReveal();
     setupForm();
     setupYear();
+    setupScrollRuler();
+    setupCursorTag();
+    setupCountUp();
+    setupMagnetic();
+    setupTilt();
+    setupActiveNav();
   });
 })();

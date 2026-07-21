@@ -362,6 +362,8 @@ button {
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 40%, transparent 90%);
   opacity: 0.7;
+  transition: transform 0.3s var(--ease);
+  will-change: transform;
 }
 
 .hero-inner {
@@ -1220,4 +1222,189 @@ textarea:focus-visible {
   .footer-bottom {
     flex-direction: column;
   }
+}
+
+/* ============================================================
+   Interaction layer — measurement ruler, drafting cursor,
+   magnetism, tilt, live counters. Kept inside the blueprint/
+   engineering vocabulary already established above.
+   ============================================================ */
+
+/* -------------------- Scroll ruler -------------------- */
+
+.scroll-ruler {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 99;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--line) 0,
+    var(--line) 1px,
+    transparent 1px,
+    transparent 40px
+  );
+  pointer-events: none;
+}
+
+.scroll-ruler-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--blueprint);
+  box-shadow: 0 0 10px rgba(36, 81, 196, 0.5);
+  transition: width 0.08s linear;
+}
+
+.scroll-ruler-fill::after {
+  content: attr(data-pct);
+  position: absolute;
+  top: 6px;
+  right: 0;
+  transform: translateX(50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--blueprint);
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  padding: 1px 5px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+
+.scroll-ruler.active .scroll-ruler-fill::after {
+  opacity: 1;
+}
+
+/* -------------------- Drafting cursor (hero only, pointer:fine) -------------------- */
+
+.cursor-tag {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  transform: translate(-999px, -999px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+
+.cursor-tag.visible {
+  opacity: 1;
+}
+
+.cursor-tag-cross {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+}
+
+.cursor-tag-cross::before,
+.cursor-tag-cross::after {
+  content: "";
+  position: absolute;
+  background: var(--blueprint);
+  opacity: 0.65;
+}
+
+.cursor-tag-cross::before {
+  left: 10px;
+  top: 0;
+  width: 1px;
+  height: 22px;
+}
+
+.cursor-tag-cross::after {
+  top: 10px;
+  left: 0;
+  width: 22px;
+  height: 1px;
+}
+
+.cursor-tag-label {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--blueprint);
+  background: var(--paper-raised);
+  border: 1px solid var(--line-strong);
+  padding: 3px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px -8px rgba(16, 19, 31, 0.3);
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-tag {
+    display: none;
+  }
+}
+
+/* -------------------- Magnetic buttons -------------------- */
+
+.magnetic {
+  transition: transform 0.18s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease);
+  will-change: transform;
+}
+
+/* -------------------- Tilt cards -------------------- */
+
+.tilt {
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.tilt-inner {
+  transition: transform 0.25s var(--ease);
+  transform-style: preserve-3d;
+}
+
+/* -------------------- Spec panel live pulse -------------------- */
+
+.spec-dot {
+  position: relative;
+}
+
+.spec-dot::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid var(--success);
+  animation: spec-pulse 2.2s var(--ease) infinite;
+}
+
+@keyframes spec-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* -------------------- Active nav link -------------------- */
+
+.nav-links a.active {
+  color: var(--blueprint);
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* -------------------- Count-up numbers -------------------- */
+
+.proof-num.counting::after {
+  content: "";
 }

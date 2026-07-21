@@ -90,7 +90,17 @@
 
 <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:0;background:#fff;padding:10px;z-index:200;">Pular para o conteúdo</a>
 
+<!-- Scroll progress ruler -->
+<div class="scroll-ruler" id="scrollRuler"><div class="scroll-ruler-fill" id="scrollRulerFill" data-pct="0%"></div></div>
+
+<!-- Drafting cursor readout (hero only) -->
+<div class="cursor-tag" id="cursorTag" aria-hidden="true">
+  <div class="cursor-tag-cross"></div>
+  <div class="cursor-tag-label" id="cursorTagLabel">X 0 · Y 0</div>
+</div>
+
 <!-- ============ NAV ============ -->
+
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <a href="#main" class="logo">
@@ -115,7 +125,7 @@
 <main id="main">
 
 <!-- ============ HERO ============ -->
-<header class="hero">
+<header class="hero" id="heroInteractive">
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <span class="reg-mark tl" aria-hidden="true"></span>
   <span class="reg-mark tr" aria-hidden="true"></span>
@@ -125,13 +135,13 @@
       <h1>Sites e sistemas construídos com <em>precisão de engenharia.</em></h1>
       <p class="lead">Projetamos sites institucionais, landing pages e sistemas sob medida para clínicas, escritórios e empresas que precisam de uma presença digital que realmente converte — com identidade visual exclusiva, nunca um template genérico.</p>
       <div class="hero-actions">
-        <a href="#contato" class="btn btn-primary">Solicitar orçamento</a>
-        <a href="#portfolio" class="btn btn-outline">Ver portfólio</a>
+        <a href="#contato" class="btn btn-primary magnetic">Solicitar orçamento</a>
+        <a href="#portfolio" class="btn btn-outline magnetic">Ver portfólio</a>
       </div>
       <div class="hero-proof">
-        <div class="proof-item"><span class="proof-num">95+</span><span class="proof-label">Lighthouse Performance</span></div>
-        <div class="proof-item"><span class="proof-num">100</span><span class="proof-label">SEO Score médio</span></div>
-        <div class="proof-item"><span class="proof-num">0</span><span class="proof-label">Templates reaproveitados</span></div>
+        <div class="proof-item"><span class="proof-num" data-count="95" data-suffix="+">0+</span><span class="proof-label">Lighthouse Performance</span></div>
+        <div class="proof-item"><span class="proof-num" data-count="100" data-suffix="">0</span><span class="proof-label">SEO Score médio</span></div>
+        <div class="proof-item"><span class="proof-num" data-count="0" data-suffix="">0</span><span class="proof-label">Templates reaproveitados</span></div>
       </div>
     </div>
     <div class="reveal is-visible">
@@ -193,7 +203,7 @@
       <p>Soluções sob medida para cada etapa da presença digital do seu negócio.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card reveal">
+      <div class="service-card reveal tilt">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M3 6h18M3 18h12"/></svg>
         </div>
@@ -201,7 +211,7 @@
         <p>Páginas de alta conversão para campanhas, lançamentos e captação de leads, com foco total em CTA e velocidade de carregamento.</p>
         <span class="service-tag">A partir de propostas sob consulta</span>
       </div>
-      <div class="service-card reveal">
+      <div class="service-card reveal tilt">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
         </div>
@@ -209,7 +219,7 @@
         <p>Presença digital completa: seções sobre, serviços, depoimentos, FAQ e contato — com SEO técnico e identidade exclusiva para o seu nicho.</p>
         <span class="service-tag">Padrão Projeto A</span>
       </div>
-      <div class="service-card reveal">
+      <div class="service-card reveal tilt">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
         </div>
@@ -217,7 +227,7 @@
         <p>CRMs, painéis administrativos e plataformas sob medida com Firebase, React e automações — construídos para escalar com sua operação.</p>
         <span class="service-tag">Projetos personalizados</span>
       </div>
-      <div class="service-card reveal">
+      <div class="service-card reveal tilt">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         </div>
@@ -225,7 +235,7 @@
         <p>Hospedagem, monitoramento, backups e ajustes contínuos com planos mensais — para seu site nunca ficar desatualizado.</p>
         <span class="service-tag">Recorrente</span>
       </div>
-      <div class="service-card reveal">
+      <div class="service-card reveal tilt">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v10a8 8 0 01-16 0V4z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
@@ -233,7 +243,7 @@
         <p>Boas práticas de segurança, hardening de sistemas e revisão de vulnerabilidades para proteger dados e operação do seu negócio.</p>
         <span class="service-tag">Sob avaliação técnica</span>
       </div>
-      <div class="service-card reveal">
+      <div class="service-card reveal tilt">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
         </div>
@@ -254,7 +264,7 @@
       <p>Uma amostra de como adaptamos paleta, tipografia e tom visual para o segmento de cada cliente — nada de repetir a mesma fórmula.</p>
     </div>
     <div class="portfolio-grid">
-      <div class="case-card reveal">
+      <div class="case-card reveal tilt">
         <div class="case-swatch">
           <span style="background:#f4e3e0"></span>
           <span style="background:#e8b8ae"></span>
@@ -271,7 +281,7 @@
           <div class="case-result">Resultado: <strong>site 100% responsivo</strong> com SEO local para captação de pacientes.</div>
         </div>
       </div>
-      <div class="case-card reveal">
+      <div class="case-card reveal tilt">
         <div class="case-swatch">
           <span style="background:#0f1c3f"></span>
           <span style="background:#1c2f5e"></span>
@@ -288,7 +298,7 @@
           <div class="case-result">Resultado: <strong>schema LocalBusiness + FAQ</strong> para dúvidas jurídicas comuns.</div>
         </div>
       </div>
-      <div class="case-card reveal">
+      <div class="case-card reveal tilt">
         <div class="case-swatch">
           <span style="background:#e7f5f1"></span>
           <span style="background:#a6ded0"></span>
@@ -515,7 +525,7 @@
         <p>Sem templates genéricos, sem enrolação — só um projeto pensado para o seu negócio, do zero.</p>
       </div>
       <div class="cta-final-actions">
-        <a href="#" class="btn btn-gold" id="whatsappCtaBtn">Solicitar orçamento</a>
+        <a href="#" class="btn btn-gold magnetic" id="whatsappCtaBtn">Solicitar orçamento</a>
       </div>
     </div>
   </div>
